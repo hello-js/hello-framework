@@ -27,6 +27,12 @@ describe('Config', function () {
       expect(config2.environmentConfig).to.deep.equal({})
       expect(config2.localConfig).to.deep.equal({})
     })
+
+    it('allows being passed an existing Config instance', function () {
+      let config2 = new Config(config)
+
+      expect(config2.toJSON()).to.deep.equal(config.toJSON())
+    })
   })
 
   describe('#env', function () {
