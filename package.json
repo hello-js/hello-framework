@@ -7,9 +7,20 @@
   "author": "Matt Venables <mattvenables@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "./node_modules/.bin/standard"
+    "test": "./node_modules/.bin/standard && ./node_modules/.bin/mocha test/**/*.spec.js"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "dependencies": {
+    "koa-plus": "^1.1.0"
   },
   "devDependencies": {
-    "standard": "^8.6.0"
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "standard": "^8.6.0",
+    "supertest": "^3.0.0"
   }
 }
