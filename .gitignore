@@ -4,5 +4,8 @@
 # Temp
 tmp
 
+# Coverage
+.nyc_output
+
 # Node modules
 node_modules
