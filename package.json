@@ -1,0 +1,9 @@
+{
+  "name": "hello",
+  "version": "0.1.0",
+  "description": "Write less. Ship more.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/hello-framework/hello",
+  "author": "Matt Venables <mattvenables@gmail.com>",
+  "license": "MIT"
+}
