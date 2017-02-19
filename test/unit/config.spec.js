@@ -7,7 +7,7 @@ const path = require('path')
 describe('Config', function () {
   let config
 
-  before(function () {
+  beforeEach(function () {
     config = new Config().load(path.join(__dirname, '..', 'fixtures', 'config'))
   })
 
@@ -32,6 +32,26 @@ describe('Config', function () {
       let config2 = new Config(config)
 
       expect(config2.toJSON()).to.deep.equal(config.toJSON())
+    })
+  })
+
+  describe('#get()', function () {
+    it('returns the value at a given key path', function () {
+      expect(config.get('objects.local')).to.be.true
+    })
+  })
+
+  describe('#set()', function () {
+    it('sets new values', function () {
+      config.set('newValue', 2)
+
+      expect(config.get('newValue')).to.equal(2)
+    })
+
+    it('overwrites existing values at keypaths', function () {
+      config.set('objects.local', 'overwritten')
+
+      expect(config.get('objects.local')).to.equal('overwritten')
     })
   })
 
@@ -74,7 +94,19 @@ describe('Config', function () {
     })
   })
 
-  describe('.load', function () {
+  describe('#customConfig', function () {
+    it('returns the configuration that was set using the Config class setter', function () {
+      expect(config.customConfig).to.deep.equal({})
+
+      config.set('newValue', 3)
+
+      expect(config.customConfig).to.deep.equal({
+        newValue: 3
+      })
+    })
+  })
+
+  describe('.load()', function () {
     it('creates a new Config object and calls the `load` instance method', function () {
       let config2 = Config.load(path.join(__dirname, '..', 'fixtures', 'config'))
 
@@ -82,7 +114,7 @@ describe('Config', function () {
     })
   })
 
-  describe('#load', function () {
+  describe('#load()', function () {
     it('safely handles being given an invalid config directory', function () {
       let badConfig = new Config().load(path.join(__dirname, '..', 'fixtures', 'bad-config'))
 
