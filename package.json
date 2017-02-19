@@ -7,7 +7,7 @@
   "author": "Matt Venables <mattvenables@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/standard && ./node_modules/.bin/nyc ./node_modules/.bin/mocha 'test/**/*.spec.js'"
+    "test": "./node_modules/.bin/standard && NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha 'test/**/*.spec.js'"
   },
   "standard": {
     "env": [
@@ -15,7 +15,8 @@
     ]
   },
   "dependencies": {
-    "koa-plus": "^1.1.0"
+    "koa-plus": "^1.1.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
