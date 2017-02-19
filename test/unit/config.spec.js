@@ -8,13 +8,39 @@ describe('Config', function () {
   let config
 
   before(function () {
-    config = new Config(path.join(__dirname, '..', 'fixtures', 'config'))
+    config = new Config().load(path.join(__dirname, '..', 'fixtures', 'config'))
+  })
+
+  describe('constructor', function () {
+    it('allows being given no configuration', function () {
+      let config2 = new Config()
+
+      expect(config2.defaultConfig).to.deep.equal({})
+      expect(config2.environmentConfig).to.deep.equal({})
+      expect(config2.localConfig).to.deep.equal({})
+    })
+
+    it('allows being passed a default configuration', function () {
+      let config2 = new Config({ some: 'setting' })
+
+      expect(config2.defaultConfig).to.deep.equal({ some: 'setting' })
+      expect(config2.environmentConfig).to.deep.equal({})
+      expect(config2.localConfig).to.deep.equal({})
+    })
   })
 
   describe('#env', function () {
     it('returns the environment name', function () {
-      let config = new Config()
       expect(config.env).to.equal('test')
+    })
+
+    it('falls back to `development` if no environment is set', function () {
+      let oldEnv = process.env.NODE_ENV
+      delete process.env.NODE_ENV
+
+      expect(config.env).to.equal('development')
+
+      process.env.NODE_ENV = oldEnv
     })
   })
 
@@ -42,6 +68,27 @@ describe('Config', function () {
     })
   })
 
+  describe('.load', function () {
+    it('creates a new Config object and calls the `load` instance method', function () {
+      let config2 = Config.load(path.join(__dirname, '..', 'fixtures', 'config'))
+
+      expect(config.toJSON()).to.deep.equal(config2.toJSON())
+    })
+  })
+
+  describe('#load', function () {
+    it('safely handles being given an invalid config directory', function () {
+      let badConfig = new Config().load(path.join(__dirname, '..', 'fixtures', 'bad-config'))
+
+      expect(badConfig.defaultConfig).to.deep.equal({})
+      expect(badConfig.environmentConfig).to.deep.equal({})
+      expect(badConfig.localConfig).to.deep.equal({})
+      expect(badConfig.toJSON()).to.deep.equal({
+        env: 'test'
+      })
+    })
+  })
+
   describe('#toJSON()', function () {
     it('returns the fully-merged configuration object', function () {
       expect(config.toJSON()).to.deep.equal({
@@ -56,14 +103,6 @@ describe('Config', function () {
           test: true,
           local: true
         }
-      })
-    })
-
-    it('returns an empty config when given an invalid config directory', function () {
-      let badConfig = new Config(path.join(__dirname, '..', 'fixtures', 'bad-config'))
-
-      expect(badConfig.toJSON()).to.deep.equal({
-        env: 'test'
       })
     })
   })
