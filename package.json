@@ -15,6 +15,7 @@
     ]
   },
   "dependencies": {
+    "hello-resource-router": "^1.2.0",
     "koa-plus": "^1.1.0",
     "lodash": "^4.17.4"
   },
