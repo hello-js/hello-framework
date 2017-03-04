@@ -35,9 +35,9 @@ describe('Database', function () {
 
   describe('#connect()', function () {
     it('connects to a new database instance via Knex', function () {
-      expect(database.knex.client.config).to.deep.equal({})
-      database.connect({ client: 'pg' })
       expect(database.knex.client.config).to.deep.equal({ client: 'pg' })
+      database.connect({ client: 'mysql' })
+      expect(database.knex.client.config).to.deep.equal({ client: 'mysql' })
     })
   })
 })
