@@ -6,6 +6,7 @@ tmp
 
 # Coverage
 .nyc_output
+coverage
 
 # Local configuration
 *.local.js
