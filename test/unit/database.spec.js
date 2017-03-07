@@ -12,24 +12,24 @@ describe('Database', function () {
     })
 
     it('enables the registry plugin', function () {
-      expect(database.registry).to.be.an.object
+      expect(database.registry).to.be.an('object')
     })
 
     it('enables the pagination plugin', function () {
-      expect(database.Model.fetchPage).to.be.a.function
+      expect(database.Model.fetchPage).to.be.a('function')
     })
 
     it('enables the virtuals plugin', function () {
-      expect(model.outputVirtuals).to.be.true
+      expect(model.outputVirtuals).to.equal(true)
     })
 
     it('enables the visibility plugin', function () {
-      expect(model.visible).to.be.defined
-      expect(model.hidden).to.be.defined
+      expect(model.visible).not.to.equal(undefined)
+      expect(model.hidden).not.to.equal(undefined)
     })
 
     it('enables the secure-password plugin', function () {
-      expect(model.authenticate).to.be.defined
+      expect(model.authenticate).to.be.a('function')
     })
   })
 

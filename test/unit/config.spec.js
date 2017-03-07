@@ -37,7 +37,7 @@ describe('Config', function () {
 
   describe('#get()', function () {
     it('returns the value at a given key path', function () {
-      expect(config.get('objects.local')).to.be.true
+      expect(config.get('objects.local')).to.equal(true)
     })
   })
 

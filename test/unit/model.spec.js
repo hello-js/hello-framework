@@ -38,7 +38,7 @@ describe('Model', function () {
     it('returns the Bookshelf instance', function () {
       class User extends Model {}
 
-      expect(User.database.knex).to.be.defined
+      expect(User.database.knex).to.be.a('function')
     })
   })
 

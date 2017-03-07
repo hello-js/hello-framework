@@ -18,19 +18,19 @@
   "dependencies": {
     "bookshelf": "^0.10.3",
     "bookshelf-secure-password": "^3.0.1",
-    "hello-resource-router": "^1.2.0",
     "inflection": "^1.12.0",
     "knex": "^0.12.7",
     "koa-plus": "^1.1.0",
+    "koa-router": "^7.1.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.11.16",
+    "coveralls": "^2.12.0",
     "mocha": "^3.2.0",
     "mock-knex": "^0.3.7",
     "nyc": "^10.1.2",
-    "standard": "^8.6.0",
+    "standard": "^9.0.0",
     "supertest": "^3.0.0"
   }
 }
