@@ -16,10 +16,6 @@ describe('Hello Framework', function () {
     expect(Hello.Controller).to.be.a('function')
   })
 
-  it('exports the Database connection', function () {
-    expect(Hello.Database).to.be.an('object')
-  })
-
   it('exports the Model', function () {
     expect(Hello.Model).to.be.a('function')
   })
