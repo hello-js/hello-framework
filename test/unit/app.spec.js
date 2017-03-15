@@ -32,5 +32,16 @@ describe('App', function () {
       expect(database.connect.called).to.equal(true)
       sandbox.restore()
     })
+
+    it('adds a `render` method to ctx when views are enabled', function () {
+      app = new App({
+        views: {
+          enabled: true,
+          root: __dirname
+        }
+      })
+
+      expect(app.context.render).to.be.a('function')
+    })
   })
 })
