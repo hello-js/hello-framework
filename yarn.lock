@@ -652,7 +652,7 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
-delegates@^1.0.0:
+delegates@1.0.0, delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
@@ -1406,6 +1406,12 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18n-2@*:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/i18n-2/-/i18n-2-0.6.3.tgz#57ac6185e3ea47cffe993cd7a5c14b40df364b39"
+  dependencies:
+    sprintf "^0.1.5"
+
 iconv-lite@0.4.15:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
@@ -1864,6 +1870,13 @@ koa-helmet@^3.1.0:
   dependencies:
     helmet "^3.0.0"
 
+koa-i18n@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/koa-i18n/-/koa-i18n-2.0.1.tgz#fafad095e49cbf95b120c88643f98da7a7aeb55a"
+  dependencies:
+    debug "*"
+    i18n-2 "*"
+
 koa-is-json@1, koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -1874,6 +1887,12 @@ koa-json@^2.0.2:
   dependencies:
     koa-is-json "1"
     streaming-json-stringify "3"
+
+koa-locale@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/koa-locale/-/koa-locale-1.2.0.tgz#ad74390a58bec25d8058458394df1d001afdfb19"
+  dependencies:
+    delegates "1.0.0"
 
 koa-morgan@^1.0.1:
   version "1.0.1"
@@ -2881,6 +2900,10 @@ spdx-license-ids@^1.0.2:
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
+
+sprintf@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/sprintf/-/sprintf-0.1.5.tgz#8f83e39a9317c1a502cb7db8050e51c679f6edcf"
 
 sshpk@^1.7.0:
   version "1.10.2"

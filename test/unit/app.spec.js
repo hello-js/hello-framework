@@ -60,5 +60,18 @@ describe('App', function () {
           .expect(expected)
       })
     })
+
+    it('enables i18n for the app', function () {
+      app = new App({
+        i18n: {}
+      })
+
+      expect(app.context.getLocaleFromQuery).to.be.a('function')
+      expect(app.context.getLocaleFromSubdomain).to.be.a('function')
+      expect(app.context.getLocaleFromHeader).to.be.a('function')
+      expect(app.context.getLocaleFromCookie).to.be.a('function')
+      expect(app.context.getLocaleFromUrl).to.be.a('function')
+      expect(app.context.getLocaleFromTLD).to.be.a('function')
+    })
   })
 })
