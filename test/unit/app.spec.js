@@ -3,6 +3,8 @@
 const App = require('../../lib/app')
 const database = require('../../lib/database')
 const expect = require('chai').expect
+const fs = require('fs-promise')
+const path = require('path')
 const request = require('supertest')
 const sinon = require('sinon')
 
@@ -42,6 +44,21 @@ describe('App', function () {
       })
 
       expect(app.context.render).to.be.a('function')
+    })
+
+    it('enables static asset serving if given the `public` option', function () {
+      const fixturePath = path.join(__dirname, '..', 'fixtures')
+
+      app = new App({
+        public: fixturePath
+      })
+
+      return fs.readFile(path.join(fixturePath, 'config', 'default.js'), 'utf8').then((expected) => {
+        return request(app.listen())
+          .get('/config/default.js')
+          .expect(200)
+          .expect(expected)
+      })
     })
   })
 })
