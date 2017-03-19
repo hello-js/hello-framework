@@ -4,6 +4,14 @@ const expect = require('chai').expect
 const Model = require('../../lib/model')
 
 describe('Model', function () {
+  describe('.knex', function () {
+    it('returns the knex instance', function () {
+      class User extends Model {}
+
+      expect(User.knex.name).to.equal('knex')
+    })
+  })
+
   describe('#tableName', function () {
     it('defaults to a tableized name of the subclass', function () {
       class User extends Model {}
