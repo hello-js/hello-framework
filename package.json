@@ -28,7 +28,6 @@
     "koa-favicon": "^2.0.0",
     "koa-i18n": "^2.0.1",
     "koa-locale": "^1.2.0",
-    "koa-plus": "^1.2.1",
     "koa-router": "^7.1.0",
     "koa-static": "^3.0.0",
     "lodash": "^4.17.4"
