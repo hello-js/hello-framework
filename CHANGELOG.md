@@ -1,6 +1,6 @@
 # 👋 Hello Changelog
 
-## Latest master
+## 0.2.4 (latest master)
 
 * Merge logic from koa-plus directly into App class
 * Require node >= 7
