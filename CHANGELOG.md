@@ -1,6 +1,10 @@
 # 👋 Hello Changelog
 
-## 0.2.4 (latest master)
+## 0.2.5
+
+* Add long-lived caching to static (/public) assets
+
+## 0.2.4
 
 * Merge logic from koa-plus directly into App class
 * Require node >= 7

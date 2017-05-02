@@ -190,7 +190,9 @@ describe('App', function () {
       const fixturePath = path.join(__dirname, '..', 'fixtures')
 
       app = new App({
-        public: fixturePath
+        public: {
+          root: fixturePath
+        }
       })
 
       return fs.readFile(path.join(fixturePath, 'config', 'default.js'), 'utf8').then((expected) => {
