@@ -3,7 +3,7 @@
   "version": "0.2.6",
   "description": "Write less. Ship more.",
   "main": "lib/index.js",
-  "repository": "https://github.com/hello-framework/hello",
+  "repository": "https://github.com/hello-js/hello",
   "author": "Matt Venables <mattvenables@gmail.com>",
   "license": "MIT",
   "scripts": {

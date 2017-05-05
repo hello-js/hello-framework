@@ -2,8 +2,8 @@
 
 Write less. Ship more.
 
-[![Build Status](https://img.shields.io/travis/hello-framework/hello/master.svg)](https://travis-ci.org/hello-framework/hello)
-[![Coverage Status](https://img.shields.io/coveralls/hello-framework/hello.svg)](https://coveralls.io/github/hello-framework/hello)
+[![Build Status](https://img.shields.io/travis/hello-js/hello/master.svg)](https://travis-ci.org/hello-js/hello)
+[![Coverage Status](https://img.shields.io/coveralls/hello-js/hello.svg)](https://coveralls.io/github/hello-js/hello)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Installation
