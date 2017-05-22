@@ -42,6 +42,21 @@ describe('Model', function () {
     })
   })
 
+  describe('#update', function () {
+    it('calls `save` with the given params and { patch: true }', function () {
+      class User extends Model {}
+      let user = new User()
+      let updateParams = { name: 'Matt' }
+
+      user.save = function (params, options) {
+        expect(params).to.eql(updateParams)
+        expect(options).to.eql({ patch: true })
+      }
+
+      user.update(updateParams)
+    })
+  })
+
   describe('.database', function () {
     it('returns the Bookshelf instance', function () {
       class User extends Model {}
