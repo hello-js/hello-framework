@@ -16,6 +16,7 @@
       "text"
     ]
   },
+  "bin": "./cli/index.js",
   "standard": {
     "env": [
       "mocha"
@@ -51,6 +52,7 @@
     "lodash": "^4.17.4",
     "lodash.defaultsdeep": "^4.6.0",
     "lodash.merge": "^4.6.0",
+    "meow": "^3.7.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
