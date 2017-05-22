@@ -29,6 +29,7 @@
     "bookshelf-secure-password": "^3.0.1",
     "co": "^4.6.0",
     "hello-config": "^1.0.1",
+    "hello-index": "^1.0.1",
     "inflection": "^1.12.0",
     "kcors": "^2.2.1",
     "knex": "^0.12.9",
