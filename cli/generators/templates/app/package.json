@@ -1,5 +1,17 @@
 {
   "name": "hello-template",
   "version": "0.0.1",
-  "main": "index.js"
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "linkt": "standard",
+    "start": "node index.js",
+    "test": "echo 'No tests'"
+  },
+  "dependencies": {
+    "hello": "^0.2.7"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
+  }
 }

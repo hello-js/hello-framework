@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = {
-  controller: require('./controller')
+  App: require('./app'),
+  Controller: require('./controller')
 }

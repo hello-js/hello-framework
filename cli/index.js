@@ -2,6 +2,7 @@
 
 'use strict'
 
+const generators = require('./generators')
 const meow = require('meow')
 const cli = meow(`
 Usage
@@ -24,6 +25,7 @@ if (cli.input.length === 0) {
   cli.showHelp(0)
 }
 
+console.log('👋')
 run(cli.input[0], cli.input[1], cli.input[2], cli.flags)
 
 /**
@@ -59,21 +61,19 @@ function run (action, command, name, flags) {
 /**
  * Run a given generator
  *
- * @param {String} generator - The name of the generator to run
+ * @param {String} generatorName - The name of the generator to run
  * @param {String} name - The name of the generated item
  * @param {Object} flags - The flags passed to the generator
  */
-function generate (generator, name) {
-  if (!generator) {
-    return cli.showHelp(0)
-  }
+function generate (generatorName, name, flags) {
+  let generator
 
-  switch (generator) {
+  switch (generatorName) {
     case 'app':
-      console.log(`generating app ${name}`)
+      generator = new generators.App(name)
       break
     case 'controller':
-      console.log(`generating controller ${name}`)
+      generator = new generators.Controller(name, flags)
       break
     case 'model':
       console.log(`generating model ${name}`)
@@ -94,9 +94,13 @@ function generate (generator, name) {
       if (!name) {
         return generate('app', generator)
       }
-
-      cli.showHelp(0)
   }
+
+  if (!generator) {
+    return cli.showHelp(0)
+  }
+
+  return generator.run()
 }
 
 /**

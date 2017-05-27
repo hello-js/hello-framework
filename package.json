@@ -29,6 +29,8 @@
     "bookshelf": "^0.10.3",
     "bookshelf-secure-password": "^3.0.1",
     "co": "^4.6.0",
+    "fs-extra": "^3.0.1",
+    "glob-promise": "^3.1.0",
     "hello-config": "^1.0.1",
     "hello-index": "^1.0.1",
     "inflection": "^1.12.0",
@@ -58,7 +60,6 @@
   "devDependencies": {
     "chai": "^4.0.0",
     "coveralls": "^2.13.1",
-    "fs-promise": "^2.0.3",
     "mocha": "^3.4.2",
     "mock-knex": "^0.3.8",
     "nyc": "^10.3.2",

@@ -1,9 +1,9 @@
-# HelloTemplate
+# HelloRawTemplate
 
 ## Installation
 
 ```
-yarn Install
+yarn install
 ```
 
 ## Running
