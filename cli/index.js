@@ -76,7 +76,7 @@ function generate (generatorName, name, flags) {
       generator = new generators.Controller(name, flags)
       break
     case 'model':
-      console.log(`generating model ${name}`)
+      generator = new generators.Model(name, flags)
       break
     case 'view':
       console.log(`generating view ${name}`)

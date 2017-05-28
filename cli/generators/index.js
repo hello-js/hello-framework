@@ -2,5 +2,6 @@
 
 module.exports = {
   App: require('./app'),
-  Controller: require('./controller')
+  Controller: require('./controller'),
+  Model: require('./model')
 }
