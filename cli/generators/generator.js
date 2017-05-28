@@ -22,6 +22,14 @@ class Generator {
     return this.classCase()
   }
 
+  migrationName () {
+    if (!this._migrationName) {
+      this._migrationName = `${this.yyyymmddhhmmss()}_${this.rawSnakeCase()}`
+    }
+
+    return this._migrationName
+  }
+
   classCase (pluralize = false) {
     if (pluralize) {
       return inflection.transform(this.safeName, ['pluralize', 'camelize'])
@@ -34,6 +42,10 @@ class Generator {
     let method = pluralize ? 'pluralize' : 'singularize'
 
     return inflection.transform(this.safeName, [method, 'underscore'])
+  }
+
+  rawSnakeCase () {
+    return inflection.underscore(this.safeName)
   }
 
   camelCase (pluralize = false) {
@@ -76,6 +88,21 @@ class Generator {
       .replace(/hello-templates/g, this.kebabCase(true))
       .replace(/hello-template/g, this.kebabCase())
   }
+
+  yyyymmddhhmmss () {
+    const d = new Date()
+    return d.getFullYear().toString() +
+      padDate(d.getMonth() + 1) +
+      padDate(d.getDate()) +
+      padDate(d.getHours()) +
+      padDate(d.getMinutes()) +
+      padDate(d.getSeconds())
+  }
+}
+
+function padDate (segment) {
+  segment = segment.toString()
+  return segment[1] ? segment : `0${segment}`
 }
 
 module.exports = Generator

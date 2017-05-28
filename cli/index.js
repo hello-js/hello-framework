@@ -82,7 +82,7 @@ function generate (generatorName, name, flags) {
       console.log(`generating view ${name}`)
       break
     case 'migration':
-      console.log(`generating migration ${name}`)
+      generator = new generators.Migration(name, flags)
       break
     case 'scaffold':
       console.log(`generating scaffold ${name}`)

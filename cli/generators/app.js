@@ -15,6 +15,7 @@ class AppGenerator extends Generator {
 
     await this.copyAppTemplate()
     await this.replacePlaceholders()
+    await this.renameMigration()
     await this.initializeGit()
 
     console.log(`Done. App located at ./${this.appPath}`)
@@ -50,6 +51,13 @@ class AppGenerator extends Generator {
     await Promise.all(files.map(async (file) => {
       await this.replacePlaceholderInFile(file)
     }))
+  }
+
+  renameMigration () {
+    let migration = path.join(this.appPath, 'db', 'migrations', '0_setup_database.js')
+    let newName = path.join(this.appPath, 'db', 'migrations', `${this.yyyymmddhhmmss()}_setup_database.js`)
+
+    return fs.rename(migration, newName)
   }
 }
 
