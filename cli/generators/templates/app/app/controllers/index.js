@@ -2,4 +2,4 @@
 
 const Hello = require('hello')
 
-module.exports = Hello.Index(__dirname, { case: 'class' })
+module.exports = Hello.Index(__dirname)

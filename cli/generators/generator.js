@@ -59,7 +59,13 @@ class Generator {
     }
 
     let contents = await fs.readFile(filepath, 'utf8')
-    let replacedContent = contents
+    let replacedContent = this.replacePlaceholderInString(contents)
+
+    await fs.writeFile(filepath, replacedContent)
+  }
+
+  replacePlaceholderInString (str) {
+    return str
       .replace(/HelloRawTemplate/g, this.rawName())
       .replace(/HelloTemplates/g, this.classCase(true))
       .replace(/HelloTemplate/g, this.classCase())
@@ -69,8 +75,6 @@ class Generator {
       .replace(/hello_template/g, this.snakeCase())
       .replace(/hello-templates/g, this.kebabCase(true))
       .replace(/hello-template/g, this.kebabCase())
-
-    await fs.writeFile(filepath, replacedContent)
   }
 }
 

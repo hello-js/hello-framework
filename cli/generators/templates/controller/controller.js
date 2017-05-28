@@ -4,49 +4,49 @@ const _ = require('lodash')
 const Hello = require('hello')
 
 class HelloTemplatesController extends Hello.Controller {
-  async index (ctx) {
-    let helloTemplates = await ctx.models.HelloTemplate.forge().orderBy('created_at', 'asc').fetchAll()
+  async index () {
+    let helloTemplates = await this.ctx.models.HelloTemplate.forge().orderBy('created_at', 'asc').fetchAll()
 
-    ctx.body = {
+    this.ctx.body = {
       helloTemplates
     }
   }
 
-  async show (ctx) {
-    let helloTemplate = await ctx.models.HelloTemplate.forge({ id: ctx.params.id }).fetch({ require: true })
+  async show () {
+    let helloTemplate = await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).fetch({ require: true })
 
-    ctx.body = {
+    this.ctx.body = {
       helloTemplate
     }
   }
 
-  async create (ctx) {
-    let params = helloTemplateParams(ctx)
-    let helloTemplate = ctx.models.HelloTemplate.forge(params)
+  async create () {
+    let params = helloTemplateParams(this.ctx)
+    let helloTemplate = this.ctx.models.HelloTemplate.forge(params)
 
     await helloTemplate.save()
 
-    ctx.status = 201
-    ctx.body = {
+    this.ctx.status = 201
+    this.ctx.body = {
       helloTemplate
     }
   }
 
-  async update (ctx) {
-    let params = helloTemplateParams(ctx)
-    let helloTemplate = await ctx.models.HelloTemplate.forge({ id: ctx.params.id }).fetch({ require: true })
+  async update () {
+    let params = helloTemplateParams(this.ctx)
+    let helloTemplate = await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).fetch({ require: true })
 
     await helloTemplate.update(params)
 
-    ctx.body = {
+    this.ctx.body = {
       helloTemplate
     }
   }
 
-  async destroy (ctx) {
-    await ctx.models.HelloTemplate.forge({ id: ctx.params.id }).destroy()
+  async destroy () {
+    await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).destroy()
 
-    ctx.status = 204
+    this.ctx.status = 204
   }
 }
 
