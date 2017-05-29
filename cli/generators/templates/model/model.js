@@ -11,6 +11,10 @@ class HelloTemplate extends Hello.Model {
   get visible () {
     return ['id']
   }
+
+  get hasTimestamps () {
+    return true
+  }
 }
 
 module.exports = Hello.Model.register('HelloTemplate', HelloTemplate)

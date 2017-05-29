@@ -23,9 +23,9 @@ class Generator {
     return this.classCase('singularize')
   }
 
-  migrationName () {
+  migrationName (name) {
     if (!this._migrationName) {
-      this._migrationName = `${this.yyyymmddhhmmss()}_${this.snakeCase()}`
+      this._migrationName = `${this.yyyymmddhhmmss()}_${name || this.snakeCase()}`
     }
 
     return this._migrationName
@@ -79,6 +79,7 @@ class Generator {
   replacePlaceholderInString (str) {
     return str
       .replace(/HelloRawTemplate/g, this.rawName())
+      .replace(/hello_raw_template/g, this.snakeCase())
       .replace(/HelloTemplates/g, this.classCase('pluralize'))
       .replace(/HelloTemplate/g, this.classCase('singularize'))
       .replace(/helloTemplates/g, this.camelCase('pluralize'))

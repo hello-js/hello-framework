@@ -9,7 +9,7 @@ class ModelGenerator extends Generator {
     console.log(`Generating model ${this.modelName()} ...`)
 
     await this.copyTemplate()
-    // await this.generateMigration()
+    await this.generateMigration()
 
     console.log(`Done. Model located at ./app/models/${this.camelCase('singularize')}.js`)
   }
@@ -24,6 +24,17 @@ class ModelGenerator extends Generator {
     }
 
     await fs.copy(template, destination)
+    return this.replacePlaceholderInFile(destination)
+  }
+
+  async generateMigration () {
+    let migrationName = this.migrationName(`create_${this.snakeCase('pluralize')}`)
+    let destination = path.join('.', 'db', 'migrations', `${migrationName}.js`)
+    let templateDir = path.join(__dirname, '.', 'templates', 'model')
+    let template = path.join(templateDir, 'migration.js')
+
+    await fs.copy(template, destination)
+
     return this.replacePlaceholderInFile(destination)
   }
 }
