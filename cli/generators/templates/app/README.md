@@ -3,6 +3,12 @@
 ## Installation
 
 ```
+yarn setup
+```
+
+or
+
+```
 yarn install
 ```
 

@@ -4,8 +4,8 @@ module.exports = {
   db: {
     connection: {
       host: '127.0.0.1',
-      user: 'hello_template',
-      database: 'hello_templates_development'
+      user: 'hello_raw_template',
+      database: 'hello_raw_template_development'
     },
     debug: true
   },

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "linkt": "standard",
+    "setiup": "./bin/setup",
     "start": "node index.js",
     "test": "echo 'No tests'"
   },

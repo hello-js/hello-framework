@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run this script immediately after cloning the codebase.
+
+DEFAULT_PORT=3000
+
+# Set up dependencies
+yarn install
+
+# Create and migrate the database
+createuser -s hello_raw_template
+createdb hello_raw_template_development -U hello_raw_template
