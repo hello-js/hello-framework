@@ -1,5 +1,6 @@
 'use strict'
 
+const _ = require('lodash')
 const fs = require('fs-extra')
 const inflection = require('inflection')
 
@@ -15,48 +16,47 @@ class Generator {
   }
 
   controllerName () {
-    return `${this.classCase(true)}Controller`
+    return `${this.classCase('pluralize')}Controller`
   }
 
   modelName () {
-    return this.classCase()
+    return this.classCase('singularize')
   }
 
   migrationName () {
     if (!this._migrationName) {
-      this._migrationName = `${this.yyyymmddhhmmss()}_${this.rawSnakeCase()}`
+      this._migrationName = `${this.yyyymmddhhmmss()}_${this.snakeCase()}`
     }
 
     return this._migrationName
   }
 
-  classCase (pluralize = false) {
-    if (pluralize) {
+  classCase (inflectionMethod) {
+    if (inflectionMethod === 'pluralize') {
       return inflection.transform(this.safeName, ['pluralize', 'camelize'])
+    } else if (inflectionMethod === 'singularize') {
+      return inflection.transform(this.safeName, ['singularize', 'classify'])
     }
 
-    return inflection.transform(this.safeName, ['singularize', 'classify'])
+    return inflection.classify(this.safeName)
   }
 
-  snakeCase (pluralize = false) {
-    let method = pluralize ? 'pluralize' : 'singularize'
-
-    return inflection.transform(this.safeName, [method, 'underscore'])
+  snakeCase (inflectionMethod) {
+    return inflection.transform(this.safeName, _.compact([inflectionMethod, 'underscore']))
   }
 
-  rawSnakeCase () {
-    return inflection.underscore(this.safeName)
+  camelCase (inflectionMethod) {
+    let str = this.safeName
+
+    if (inflectionMethod) {
+      str = inflection[inflectionMethod](str)
+    }
+
+    return inflection.camelize(str, true)
   }
 
-  camelCase (pluralize = false) {
-    let method = pluralize ? 'pluralize' : 'singularize'
-
-    return inflection.camelize(inflection[method](this.safeName), true)
-  }
-
-  kebabCase (pluralize = false) {
-    let method = pluralize ? 'pluralize' : 'singularize'
-    return inflection.transform(this.safeName, [method, 'underscore', 'dasherize'])
+  kebabCase (inflectionMethod) {
+    return inflection.transform(this.safeName, _.compact([inflectionMethod, 'underscore', 'dasherize']))
   }
 
   async run () {
@@ -79,14 +79,14 @@ class Generator {
   replacePlaceholderInString (str) {
     return str
       .replace(/HelloRawTemplate/g, this.rawName())
-      .replace(/HelloTemplates/g, this.classCase(true))
-      .replace(/HelloTemplate/g, this.classCase())
-      .replace(/helloTemplates/g, this.camelCase(true))
-      .replace(/helloTemplate/g, this.camelCase())
-      .replace(/hello_templates/g, this.snakeCase(true))
-      .replace(/hello_template/g, this.snakeCase())
-      .replace(/hello-templates/g, this.kebabCase(true))
-      .replace(/hello-template/g, this.kebabCase())
+      .replace(/HelloTemplates/g, this.classCase('pluralize'))
+      .replace(/HelloTemplate/g, this.classCase('singularize'))
+      .replace(/helloTemplates/g, this.camelCase('pluralize'))
+      .replace(/helloTemplate/g, this.camelCase('singularize'))
+      .replace(/hello_templates/g, this.snakeCase('pluralize'))
+      .replace(/hello_template/g, this.snakeCase('singularize'))
+      .replace(/hello-templates/g, this.kebabCase('pluralize'))
+      .replace(/hello-template/g, this.kebabCase('singularize'))
   }
 
   yyyymmddhhmmss () {

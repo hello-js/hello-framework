@@ -11,11 +11,11 @@ class ModelGenerator extends Generator {
     await this.copyTemplate()
     // await this.generateMigration()
 
-    console.log(`Done. Model located at ./app/models/${this.camelCase()}.js`)
+    console.log(`Done. Model located at ./app/models/${this.camelCase('singularize')}.js`)
   }
 
   async copyTemplate () {
-    let destination = path.join('.', 'app', 'models', `${this.camelCase()}.js`)
+    let destination = path.join('.', 'app', 'models', `${this.camelCase('singularize')}.js`)
     let templateDir = path.join(__dirname, '.', 'templates', 'model')
     let template = path.join(templateDir, 'model.js')
 

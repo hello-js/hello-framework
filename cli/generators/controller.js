@@ -12,11 +12,11 @@ class ControllerGenerator extends Generator {
     await this.copyTemplate()
     await this.updateRoutes()
 
-    console.log(`Done. Controller located at ./app/controllers/${this.camelCase(true)}.js`)
+    console.log(`Done. Controller located at ./app/controllers/${this.camelCase('pluralize')}.js`)
   }
 
   async copyTemplate () {
-    let destination = path.join('.', 'app', 'controllers', `${this.camelCase(true)}.js`)
+    let destination = path.join('.', 'app', 'controllers', `${this.camelCase('pluralize')}.js`)
     let templateDir = path.join(__dirname, '.', 'templates', 'controller')
     let template = path.join(templateDir, 'controller.js')
 
