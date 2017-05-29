@@ -9,7 +9,8 @@
     "test": "echo 'No tests'"
   },
   "dependencies": {
-    "hello": "^0.2.7"
+    "hello": "^0.2.7",
+    "pg": "^6.2.3"
   },
   "devDependencies": {
     "standard": "^10.0.2"
