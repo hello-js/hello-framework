@@ -5,7 +5,6 @@
 console.log('👋')
 
 const generators = require('./generators')
-const Knex = require('knex')
 const meow = require('meow')
 const path = require('path')
 
@@ -114,12 +113,12 @@ function generate (generatorName, name, flags) {
  */
 function migrate (direction) {
   let config = require(path.join(process.cwd(), '.', 'config'))
-  let knex = new Knex(config.db)
+  let db = require(path.join(process.cwd(), '.', 'db'))
 
   if (direction === 'up') {
-    return knex.migrate.latest(config.db)
+    return db.migrate.latest(config.db)
   } else if (direction === 'down') {
-    return knex.migrate.rollback(config.db)
+    return db.migrate.rollback(config.db)
   }
 
   return cli.showHelp(0)
