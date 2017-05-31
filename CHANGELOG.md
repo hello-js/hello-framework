@@ -3,6 +3,7 @@
 ## 0.2.9
 
 * Add `Model#update` method to call `save` with `{ patch: true }`
+* Add first round of generators (`app`, `controller`, `model`, `migration`)
 
 ## 0.2.8
 
