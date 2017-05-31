@@ -11,14 +11,14 @@ const glob = require('glob-promise')
  */
 class AppGenerator extends Generator {
   async run () {
-    console.log(`Generating app ${this.rawName()} ...`)
+    console.log(`  Generating app ${this.rawName()} ...`)
 
     await this.copyAppTemplate()
     await this.replacePlaceholders()
     await this.renameMigration()
     await this.initializeGit()
 
-    console.log(`Done. App located at ./${this.appPath}`)
+    console.log(`  App located at ./${this.appPath}`)
   }
 
   get templatePath () {

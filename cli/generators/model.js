@@ -6,12 +6,12 @@ const path = require('path')
 
 class ModelGenerator extends Generator {
   async run () {
-    console.log(`Generating model ${this.modelName()} ...`)
+    console.log(`  Generating model ${this.modelName()} ...`)
 
     await this.copyTemplate()
     await this.generateMigration()
 
-    console.log(`Done. Model located at ./app/models/${this.camelCase('singularize')}.js`)
+    console.log(`  Done. Model located at ./app/models/${this.camelCase('singularize')}.js`)
   }
 
   async copyTemplate () {

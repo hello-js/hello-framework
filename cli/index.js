@@ -2,11 +2,13 @@
 
 'use strict'
 
-console.log('👋')
-
 const generators = require('./generators')
 const meow = require('meow')
 const path = require('path')
+const version = require('../package').version
+
+console.log(`  👋   hello (v${version})`)
+console.log('')
 
 const cli = meow(`
 Usage
@@ -82,16 +84,19 @@ function generate (generatorName, name, flags) {
       generator = new generators.Model(name, flags)
       break
     case 'view':
-      console.log(`generating view ${name}`)
+      console.log(`generating view ${name} ...`)
+      console.log('NotImplemented. View generation not yet available')
       break
     case 'migration':
       generator = new generators.Migration(name, flags)
       break
     case 'scaffold':
-      console.log(`generating scaffold ${name}`)
+      console.log(`generating scaffold ${name} ...`)
+      console.log('NotImplemented. Scaffold generation not yet available')
       break
     case 'user':
-      console.log(`generating user ${name}`)
+      console.log(`generating user ${name} ...`)
+      console.log('NotImplemented. User generation not yet available')
       break
     default:
       if (!name) {

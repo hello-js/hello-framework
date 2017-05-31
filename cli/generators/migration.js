@@ -6,11 +6,11 @@ const path = require('path')
 
 class MigrationGenerator extends Generator {
   async run () {
-    console.log(`Generating migration ${this.snakeCase()} ...`)
+    console.log(`  Generating migration ${this.snakeCase()} ...`)
 
     await this.copyTemplate()
 
-    console.log(`Done. Migration located at ./db/migratons/${this.migrationName()}.js`)
+    console.log(`  Done. Migration located at ./db/migratons/${this.migrationName()}.js`)
   }
 
   async copyTemplate () {

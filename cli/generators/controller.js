@@ -7,12 +7,12 @@ const path = require('path')
 
 class ControllerGenerator extends Generator {
   async run () {
-    console.log(`Generating controller ${this.controllerName()} ...`)
+    console.log(`  Generating controller ${this.controllerName()} ...`)
 
     await this.copyTemplate()
     await this.updateRoutes()
 
-    console.log(`Done. Controller located at ./app/controllers/${this.camelCase('pluralize')}.js`)
+    console.log(`  Done. Controller located at ./app/controllers/${this.camelCase('pluralize')}.js`)
   }
 
   async copyTemplate () {
