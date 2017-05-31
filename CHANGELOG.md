@@ -1,5 +1,22 @@
 # 👋 Hello Changelog
 
+## 0.2.9
+
+* Add `Model#update` method to call `save` with `{ patch: true }`
+
+## 0.2.8
+
+* Use `hello-config` for environment-specific configuration
+* Use `hello-index` for auto genated index files
+
+## 0.2.7
+
+* Fix invalid koa dependency
+
+## 0.2.6
+
+* Update max-age configuration for static assets to use milliseconds
+
 ## 0.2.5
 
 * Add long-lived caching to static (/public) assets
