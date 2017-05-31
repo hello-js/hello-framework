@@ -2,6 +2,8 @@
 
 'use strict'
 
+console.log('👋')
+
 const generators = require('./generators')
 const meow = require('meow')
 const cli = meow(`
@@ -25,7 +27,6 @@ if (cli.input.length === 0) {
   cli.showHelp(0)
 }
 
-console.log('👋')
 run(cli.input[0], cli.input[1], cli.input[2], cli.flags)
 
 /**
@@ -54,7 +55,7 @@ function run (action, command, name, flags) {
       migrate('down')
       break
     default:
-      run('new', 'app', action, flags)
+      run('new', action, command, flags)
   }
 }
 
@@ -92,7 +93,7 @@ function generate (generatorName, name, flags) {
       break
     default:
       if (!name) {
-        return generate('app', generator)
+        return generate('app', generatorName)
       }
   }
 
