@@ -1,5 +1,13 @@
 # 👋 Hello Changelog
 
+## 0.2.11
+
+* Ensure process exits cleanly after migrations
+
+## 0.2.10
+
+* Fix how migrations are run via the CLI
+
 ## 0.2.9
 
 * Add `Model#update` method to call `save` with `{ patch: true }`

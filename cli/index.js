@@ -116,15 +116,17 @@ function generate (generatorName, name, flags) {
  *
  * @param {String} direction - The direcation to run, can be 'up' or 'down'
  */
-function migrate (direction) {
+async function migrate (direction) {
   let config = require(path.join(process.cwd(), '.', 'config'))
   let db = require(path.join(process.cwd(), '.', 'db'))
 
   if (direction === 'up') {
-    return db.knex.migrate.latest(config.db)
+    await db.knex.migrate.latest(config.db)
   } else if (direction === 'down') {
-    return db.knex.migrate.rollback(config.db)
+    await db.knex.migrate.rollback(config.db)
+  } else {
+    cli.showHelp(0)
   }
 
-  return cli.showHelp(0)
+  process.exit(0)
 }
