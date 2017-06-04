@@ -121,9 +121,9 @@ function migrate (direction) {
   let db = require(path.join(process.cwd(), '.', 'db'))
 
   if (direction === 'up') {
-    return db.migrate.latest(config.db)
+    return db.knex.migrate.latest(config.db)
   } else if (direction === 'down') {
-    return db.migrate.rollback(config.db)
+    return db.knex.migrate.rollback(config.db)
   }
 
   return cli.showHelp(0)
