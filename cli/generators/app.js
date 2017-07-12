@@ -47,7 +47,7 @@ class AppGenerator extends Generator {
   }
 
   copyDotfiles () {
-    let oldName = path.join(this.appPath, 'gitgnore')
+    let oldName = path.join(this.appPath, 'gitignore')
     let newName = path.join(this.appPath, '.gitignore')
 
     return fs.rename(oldName, newName)
