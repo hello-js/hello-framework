@@ -1,5 +1,9 @@
 # 👋 Hello Changelog
 
+## 0.2.12
+
+* Update app template to ensure dotfiles (specifically .gitignore) are created correctly
+
 ## 0.2.11
 
 * Ensure process exits cleanly after migrations
