@@ -16,6 +16,7 @@ class AppGenerator extends Generator {
     await this.copyAppTemplate()
     await this.replacePlaceholders()
     await this.renameMigration()
+    await this.copyDotfiles()
     await this.initializeGit()
 
     console.log(`  App located at ./${this.appPath}`)
@@ -43,6 +44,13 @@ class AppGenerator extends Generator {
         return resolve()
       })
     })
+  }
+
+  copyDotfiles () {
+    let oldName = path.join(this.appPath, 'gitgnore')
+    let newName = path.join(this.appPath, '.gitignore')
+
+    return fs.rename(oldName, newName)
   }
 
   async replacePlaceholders () {
