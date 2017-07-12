@@ -1,6 +1,6 @@
 # 👋 Hello Changelog
 
-## 0.2.12
+## 0.2.13
 
 * Update app template to ensure dotfiles (specifically .gitignore) are created correctly
 
