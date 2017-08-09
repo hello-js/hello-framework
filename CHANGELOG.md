@@ -1,5 +1,9 @@
 # 👋 Hello Changelog
 
+## 0.3.0 (master)
+
+* Switch to use [Objection.js](http://vincit.github.io/objection.js) instead of Bookshelf
+
 ## 0.2.13
 
 * Update app template to ensure dotfiles (specifically .gitignore) are created correctly

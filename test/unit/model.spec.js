@@ -18,60 +18,73 @@ describe('Model', function () {
       class SessionToken extends Model {}
       class Person extends Model {}
 
-      expect(User.forge().tableName).to.equal('users')
-      expect(SessionToken.forge().tableName).to.equal('session_tokens')
-      expect(Person.forge().tableName).to.equal('people')
+      expect(User.tableName).to.equal('users')
+      expect(SessionToken.tableName).to.equal('session_tokens')
+      expect(Person.tableName).to.equal('people')
     })
 
     it('uses the schema name, if set on the model', function () {
       class Business extends Model {
-        get schemaName () {
+        static get schemaName () {
           return 'schema'
         }
       }
 
-      expect(Business.forge().tableName).to.equal('schema.businesses')
+      expect(Business.tableName).to.equal('schema.businesses')
     })
   })
 
-  describe('#idAttribute', function () {
-    it('returns the default `id` attribute on the model', function () {
-      class User extends Model {}
-
-      expect(User.forge().idAttribute).to.equal('id')
-    })
-  })
-
-  describe('#update', function () {
-    it('calls `save` with the given params and { patch: true }', function () {
-      class User extends Model {}
-      let user = new User()
-      let updateParams = { name: 'Matt' }
-
-      user.save = function (params, options) {
-        expect(params).to.eql(updateParams)
-        expect(options).to.eql({ patch: true })
+  describe('$beforeInsert', function () {
+    it('does nothing if hasTimestamps is set to false', async function () {
+      class User extends Model {
+        static get hasTimestamps () {
+          return false
+        }
       }
 
-      user.update(updateParams)
+      let user = new User()
+      user.$beforeInsert()
+      expect(user.created_at).to.equal(undefined)
+      expect(user.updated_at).to.equal(undefined)
+    })
+
+    it('sets created_at, updated_at if hasTimestamps is set to true', function () {
+      class User extends Model {
+        static get hasTimestamps () {
+          return true
+        }
+      }
+
+      let user = new User()
+      user.$beforeInsert()
+      expect(user.created_at).to.be.a('string')
+      expect(user.updated_at).to.be.a('string')
     })
   })
 
-  describe('.database', function () {
-    it('returns the Bookshelf instance', function () {
-      class User extends Model {}
+  describe('$beforeUpdate', function () {
+    it('does nothing if hasTimestamps is set to false', function () {
+      class User extends Model {
+        static get hasTimestamps () {
+          return false
+        }
+      }
 
-      expect(User.database.knex).to.be.a('function')
+      let user = new User()
+      user.$beforeUpdate()
+      expect(user.updated_at).to.equal(undefined)
     })
-  })
 
-  describe('.register', function () {
-    it('registers the model in the database registry', function () {
-      class User extends Model {}
+    it('sets updated_at if hasTimestamps is set to true', function () {
+      class User extends Model {
+        static get hasTimestamps () {
+          return true
+        }
+      }
 
-      Model.register('User', User)
-
-      expect(Model.database.model('User')).to.deep.equal(User)
+      let user = new User()
+      user.$beforeUpdate()
+      expect(user.updated_at).to.be.a('string')
     })
   })
 })

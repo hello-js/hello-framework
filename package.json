@@ -26,8 +26,6 @@
     "node": ">= 7.0.0"
   },
   "dependencies": {
-    "bookshelf": "^0.10.3",
-    "bookshelf-secure-password": "^3.0.1",
     "co": "^4.6.0",
     "fs-extra": "^3.0.1",
     "glob-promise": "^3.1.0",
@@ -55,6 +53,8 @@
     "lodash.defaultsdeep": "^4.6.0",
     "lodash.merge": "^4.6.0",
     "meow": "^3.7.0",
+    "objection": "^0.8.6",
+    "objection-visibility": "^0.1.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
@@ -63,6 +63,7 @@
     "mocha": "^3.4.2",
     "mock-knex": "^0.3.8",
     "nyc": "^10.3.2",
+    "pg": "^7.1.0",
     "sinon": "^2.3.2",
     "standard": "^10.0.2",
     "supertest": "^3.0.0"
