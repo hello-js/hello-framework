@@ -8,13 +8,16 @@ class HelloTemplate extends Hello.Model {
    *
    * @type {Array}
    */
-  get visible () {
+  static get visible () {
     return ['id']
   }
 
-  get hasTimestamps () {
+  /**
+   * Include timestamps when creating and updating the model
+   */
+  static get hasTimestamps () {
     return true
   }
 }
 
-module.exports = Hello.Model.register('HelloTemplate', HelloTemplate)
+module.exports = HelloTemplate

@@ -2,10 +2,10 @@
 
 const App = require('../../lib/app')
 const controller = require('../support/controller')
-const database = require('../../lib/database')
 const etag = require('etag')
 const expect = require('chai').expect
 const fs = require('fs-extra')
+const Model = require('../../lib/model')
 const path = require('path')
 const request = require('supertest')
 const sinon = require('sinon')
@@ -162,7 +162,7 @@ describe('App', function () {
 
     it('attempts to connect to the database if given a database config', function () {
       let sandbox = sinon.sandbox.create()
-      sandbox.stub(database, 'connect')
+      sandbox.stub(Model, 'knex')
 
       app = new App({
         db: {
@@ -171,7 +171,7 @@ describe('App', function () {
         }
       })
 
-      expect(database.connect.called).to.equal(true)
+      expect(Model.knex.called).to.equal(true)
       sandbox.restore()
     })
 

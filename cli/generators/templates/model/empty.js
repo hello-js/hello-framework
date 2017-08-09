@@ -6,4 +6,4 @@ class Template extends Hello.Model {
 
 }
 
-module.exports = Hello.Model.register('Template', Template)
+module.exports = Template

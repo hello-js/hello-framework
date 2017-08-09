@@ -5,7 +5,7 @@ const Hello = require('hello')
 
 class HelloTemplatesController extends Hello.Controller {
   async index () {
-    let helloTemplates = await this.ctx.models.HelloTemplate.forge().orderBy('created_at', 'asc').fetchAll()
+    let helloTemplates = await this.ctx.models.HelloTemplate.query().orderBy('created_at', 'asc')
 
     this.ctx.body = {
       helloTemplates
@@ -13,7 +13,11 @@ class HelloTemplatesController extends Hello.Controller {
   }
 
   async show () {
-    let helloTemplate = await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).fetch({ require: true })
+    let helloTemplate = await this.ctx.models.HelloTemplate.query().where('id', this.ctx.params.id).first()
+
+    if (!helloTemplate) {
+      this.ctx.throw(404)
+    }
 
     this.ctx.body = {
       helloTemplate
@@ -22,9 +26,7 @@ class HelloTemplatesController extends Hello.Controller {
 
   async create () {
     let params = helloTemplateParams(this.ctx)
-    let helloTemplate = this.ctx.models.HelloTemplate.forge(params)
-
-    await helloTemplate.save()
+    let helloTemplate = await this.ctx.models.HelloTemplate.query().insert(params).returning('*')
 
     this.ctx.status = 201
     this.ctx.body = {
@@ -34,9 +36,11 @@ class HelloTemplatesController extends Hello.Controller {
 
   async update () {
     let params = helloTemplateParams(this.ctx)
-    let helloTemplate = await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).fetch({ require: true })
+    let helloTemplate = await this.ctx.models.HelloTemplate.query().patch(params).where('id', this.ctx.params.id).first().returning('*')
 
-    await helloTemplate.update(params)
+    if (!helloTemplate) {
+      this.ctx.throw(404)
+    }
 
     this.ctx.body = {
       helloTemplate
@@ -44,7 +48,7 @@ class HelloTemplatesController extends Hello.Controller {
   }
 
   async destroy () {
-    await this.ctx.models.HelloTemplate.forge({ id: this.ctx.params.id }).destroy()
+    await this.ctx.models.HelloTemplate.query().delete().where('id', this.ctx.params.id)
 
     this.ctx.status = 204
   }
