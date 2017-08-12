@@ -1,10 +1,10 @@
 'use strict'
 
-function up (knex) {
+async function up (knex) {
 
 }
 
-function down (knex) {
+async function down (knex) {
 
 }
 

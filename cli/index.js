@@ -121,9 +121,9 @@ async function migrate (direction) {
   let db = require(path.join(process.cwd(), '.', 'db'))
 
   if (direction === 'up') {
-    await db.knex.migrate.latest(config.db)
+    await db.migrate.latest(config.db)
   } else if (direction === 'down') {
-    await db.knex.migrate.rollback(config.db)
+    await db.migrate.rollback(config.db)
   } else {
     cli.showHelp(0)
   }

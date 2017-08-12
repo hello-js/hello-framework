@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
+    "migrate": "hello migrate",
     "setup": "./bin/setup",
     "start": "node index.js",
     "test": "echo 'No tests'"

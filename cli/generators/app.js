@@ -20,6 +20,10 @@ class AppGenerator extends Generator {
     await this.initializeGit()
 
     console.log(`  App located at ./${this.appPath}`)
+    console.log('')
+    console.log(`  Now run:`)
+    console.log(`    cd ./${this.appPath}`)
+    console.log(`    yarn setup`)
   }
 
   get templatePath () {
