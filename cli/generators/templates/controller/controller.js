@@ -4,53 +4,53 @@ const _ = require('lodash')
 const Hello = require('hello')
 
 class HelloTemplatesController extends Hello.Controller {
-  async index () {
-    let helloTemplates = await this.ctx.models.HelloTemplate.query().orderBy('created_at', 'asc')
+  async index (ctx) {
+    let helloTemplates = await ctx.models.HelloTemplate.query().orderBy('created_at', 'asc')
 
-    this.ctx.body = {
+    ctx.body = {
       helloTemplates
     }
   }
 
-  async show () {
-    let helloTemplate = await this.ctx.models.HelloTemplate.query().where('id', this.ctx.params.id).first()
+  async show (ctx) {
+    let helloTemplate = await ctx.models.HelloTemplate.query().where('id', ctx.params.id).first()
 
     if (!helloTemplate) {
-      this.ctx.throw(404)
+      ctx.throw(404)
     }
 
-    this.ctx.body = {
+    ctx.body = {
       helloTemplate
     }
   }
 
-  async create () {
-    let params = helloTemplateParams(this.ctx)
-    let helloTemplate = await this.ctx.models.HelloTemplate.query().insert(params).returning('*')
+  async create (ctx) {
+    let params = helloTemplateParams(ctx)
+    let helloTemplate = await ctx.models.HelloTemplate.query().insert(params).returning('*')
 
-    this.ctx.status = 201
-    this.ctx.body = {
+    ctx.status = 201
+    ctx.body = {
       helloTemplate
     }
   }
 
-  async update () {
-    let params = helloTemplateParams(this.ctx)
-    let helloTemplate = await this.ctx.models.HelloTemplate.query().patch(params).where('id', this.ctx.params.id).first().returning('*')
+  async update (ctx) {
+    let params = helloTemplateParams(ctx)
+    let helloTemplate = await ctx.models.HelloTemplate.query().patch(params).where('id', ctx.params.id).first().returning('*')
 
     if (!helloTemplate) {
-      this.ctx.throw(404)
+      ctx.throw(404)
     }
 
-    this.ctx.body = {
+    ctx.body = {
       helloTemplate
     }
   }
 
-  async destroy () {
-    await this.ctx.models.HelloTemplate.query().delete().where('id', this.ctx.params.id)
+  async destroy (ctx) {
+    await ctx.models.HelloTemplate.query().delete().where('id', ctx.params.id)
 
-    this.ctx.status = 204
+    ctx.status = 204
   }
 }
 
