@@ -18,6 +18,7 @@ class AppGenerator extends Generator {
     await this.renameMigration()
     await this.copyDotfiles()
     await this.initializeGit()
+    await this.installDependencies()
 
     console.log(`  App located at ./${this.appPath}`)
     console.log('')
@@ -38,16 +39,15 @@ class AppGenerator extends Generator {
     return fs.copy(this.templatePath, this.appPath)
   }
 
-  initializeGit () {
-    return new Promise((resolve, reject) => {
-      exec(`git init ${this.appPath}`, function (err) {
-        if (err) {
-          return reject(err)
-        }
+  async initializeGit () {
+    console.log(`  Inititalizing git ...`)
+    await _execPromise('git init', { cwd: this.appPath })
+  }
 
-        return resolve()
-      })
-    })
+  async installDependencies () {
+    console.log(`  Installing dependencies ...`)
+    await _execPromise('yarn add hello pg', { cwd: this.appPath })
+    await _execPromise('yarn add standard --dev', { cwd: this.appPath })
   }
 
   copyDotfiles () {
@@ -71,6 +71,18 @@ class AppGenerator extends Generator {
 
     return fs.rename(migration, newName)
   }
+}
+
+function _execPromise(cmd, opts = {}) {
+  return new Promise((resolve, reject) => {
+    exec(cmd, opts, function (err) {
+      if (err) {
+        return reject(err)
+      }
+
+      return resolve()
+    })
+  })
 }
 
 module.exports = AppGenerator

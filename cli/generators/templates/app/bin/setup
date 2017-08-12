@@ -11,4 +11,4 @@ yarn install
 createuser -s hello_raw_template
 createdb hello_raw_template_development -U hello_raw_template
 
-yarn setup
+yarn migrate

@@ -1,6 +1,10 @@
 # 👋 Hello Changelog
 
-## 0.3.1 (master)
+## 0.3.2 (master)
+
+* Install app dependencies upon generation
+
+## 0.3.1
 
 * Update migrations to use async/await by default
 * Add `citext` extension to generated app migrations
