@@ -73,7 +73,7 @@ class AppGenerator extends Generator {
   }
 }
 
-function _execPromise(cmd, opts = {}) {
+function _execPromise (cmd, opts = {}) {
   return new Promise((resolve, reject) => {
     exec(cmd, opts, function (err) {
       if (err) {
