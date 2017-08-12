@@ -1,6 +1,14 @@
 # 👋 Hello Changelog
 
-## 0.3.0 (master)
+## 0.3.1 (master)
+
+* Update migrations to use async/await by default
+* Add `citext` extension to generated app migrations
+* Fix migration scripts
+* Add setup instructions for app generator
+* Update controllers to accept a `ctx` param for consise code
+
+## 0.3.0
 
 * Switch to use [Objection.js](http://vincit.github.io/objection.js) instead of Bookshelf
 
