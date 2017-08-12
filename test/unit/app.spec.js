@@ -166,8 +166,10 @@ describe('App', function () {
 
       app = new App({
         db: {
-          client: 'pg',
-          connection: 'db-connection-string'
+          client: 'sqlite3',
+          connection: {
+            filename: ':memory:'
+          }
         }
       })
 
